@@ -2,11 +2,17 @@
 
 This repository is a compilation of files & resources to help those of you new to R/RStudio to get acquainted with the program as fast as possible.
 
-### Files in the repository ###
-- 00\_Installing_R.Rmd: (Chapters 1-3) of [this summary](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)
+### Learning R On Your Own ###
+1. Go through the file "00\_Installing_R.Rmd". Topics:
     + Installing R & R Studio
     + Manual installation of packages
     + Brief introduction to R
+    + Reference: Chapters 1-3 of [this summary](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)
+2. Do one of the online courses (this is a good starting place). Topics:
+    + R Syntax
+    + Vectors, Matrics, Factors, Data Frames
+    + Summary Statistics and Linear Models
+
 
 ### External Resources ###
 

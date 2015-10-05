@@ -1,0 +1,14 @@
+---
+title: "Getting R Up and Running"
+author: "Ben Chow"
+output: 
+  html_document:
+    theme: united
+---
+
+
+### Installing R ###
+- Go to the [R Website](https://cran.r-project.org/bin/windows/base/)
+- Click on the hyperlink to download the latest version of the installer
+  + Run the .exe installer and choose the default paths
+  + You should not need admin privileges to run this

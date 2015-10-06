@@ -8,7 +8,7 @@ This repository is a compilation of files & resources to help those of you new t
     + Manual installation of packages
     + Brief introduction to R
     + Reference: Chapters 1-3 of [this summary](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)
-2. Do one of the online courses (this is a good starting place). Topics:
+2. Do one of the online courses ([this](http://tryr.codeschool.com/) is a good starting place). Topics:
     + R Syntax
     + Vectors, Matrics, Factors, Data Frames
     + Summary Statistics and Linear Models

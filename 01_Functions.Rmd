@@ -64,7 +64,7 @@ Code                      | Notes
 `abs(); sqrt()`           | Absolute; square root
 `ceiling(); floor()`      | Round up or down to the nearest integer
 `seq(1, 11)`              | Generates a sequence from 1 to 11. Arguments: `by =`
-`rep("Hello", 4)`         | Generates a vector of 4 `"Hello"s`
+`rep("Hello", 4)`         | Generates a vector of 4 `"Hello"`s
 
 <br>
 

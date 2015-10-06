@@ -96,8 +96,6 @@ __Logicals__: `is.numeric(); is.character(); is.data.frame(); is.ggplot(); is.na
 
 Certain functions are only meaningful when applied to an array of values. These are especially useful for working with variables in a table. These functions mostly derive from in-built packages in R. I will introduce the more powerful data manipulation package `dplyr` in an upcoming page.
 
-<br>
-
 Code                      | Notes
 --------------------------|----------------------------------
 `cut()`                   | Creates a categorical variable from a continuous variable. Arguments: `breaks =` and `labels = `

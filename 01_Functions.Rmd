@@ -6,6 +6,8 @@ output: html_document
 
 ## Building your Function Vocabulary ##
 
+Preface: This markdown file assumes that you have done at least one of the introductory online courses mentioned in the main page, and have gotten a basic feel of working with the R console. If you haven't, head to [CodeSchool](http://tryr.codeschool.com) now to get started.
+
 ### 1. Exploring objects in the workspace ###
 
 After working with R for some time, you may end up having many objects in your workspace.  The following list of commands will help you retrieve information about the characteristics about these objects.

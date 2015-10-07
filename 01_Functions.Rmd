@@ -143,7 +143,7 @@ Code                      | Notes
 `nrow(); ncol()`          | Like __dim__ but only for 2-dimensional objects like tables
 `row.names(); colnames()` | Gives the row & column names of a *data frame*
 `rbind(); cbind()`        | Used for row- or column-binding two arrays
-`merge(); plyr::join()`   | For joining arrays; 'plyr::' indicates that you must first load the package "plyr"
+`merge(); plyr::join()`   | For joining arrays; `plyr::` indicates that you must first load the package `plyr`
 `head(); tail()`          | Displays the first or last few rows of a *data frame*. Use the argument `n = ` for the number of rows
 `rowSums(); colSums()`    | Computes the sum of each row or column of a *data frame*
 `rowMeans(); colMeans()`  | Computes the mean of each row or column of a *data frame*

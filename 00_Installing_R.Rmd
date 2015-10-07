@@ -1,12 +1,23 @@
 ---
-date: 05-Oct-2015
-author: "Ben Chow"
+title: Getting R Up and Running
 output: html_document
 ---
 
+<style type="text/css">
+  body, td {
+    font-family: 'Century Gothic';
+    color: #413839;
+  }
+  
+  h3 {
+    color: #151B54;
+  }
+</style>
+
 ## Getting R Up and Running ##
+#### 05-Oct-2015 ####
 
-
+If you're entirely new to R, this document provides a step-by-step manual of how to install R and R Studio on your computer. There is also a basic introduction to the R Studio interface, and a run-through on how to install additional packages (where security safeguards prevent automatic installation).
 
 ### 1. Installing R ###
 - Go to the [R Website](https://cran.r-project.org/bin/windows/base/)
@@ -104,7 +115,7 @@ However, this method will not work on your work laptop. Instead, you will need t
 install.packages(pkgs="htmltools_0.2.6.zip", repos = NULL, type="source")
 ```
 
-### 5. Short Familiarisation Exercise ###
+### 6. Short Familiarisation Exercise ###
 
 - Create a new R script and save it in your Documents folder as "Test.R"
 - Type in each of the following lines of code into the R script, then run them one by one

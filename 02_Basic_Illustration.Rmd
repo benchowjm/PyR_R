@@ -52,7 +52,7 @@ More things we can do:
 
 ### __MTCARS__: A regression example ###
 
-`mtcars` is another cross-sectional dataset about cars, encompassing 32 automobile types and their characteristics. You are encouraged to work through this example by typing the commands into your own console.
+`mtcars` is another cross-sectional dataset about cars, encompassing 32 automobile types and their characteristics. You are encouraged to work through this example by typing the commands into your own console. For presentation, lengthier output will be omitted, although you should still run the commands in your own console to see what happens.
 
 Type `?mtcars` in your console to see a summary of what the variables mean. The main variable of interest is fuel efficiency (`mpg`). We would like to know what characteristics of cars are correlated with better fuel efficiency.
 
@@ -77,8 +77,13 @@ Given that we intend to run a regression, it is important to distinguish continu
 
 Code         | Notes
 -------------|-------------
-`apply(mtcars, 2, table)`       | May clog up console for large datasets.
+`apply(mtcars, 2, table)`       | Output omitted. May clog up console for large datasets.
 `apply(mtcars, 2, function(x){`<br> &nbsp;&nbsp;&nbsp;&nbsp;`length(unique(x))` <br> `})` | Define your own function to summarize only what you <br> want to see. The numbers below each variable tell us the <br> distinct number of values.
+
+<b>Output</b>
+```{r, echo=F}
+apply(mtcars, 2, function(x) length(table(x)))
+``` 
 
 Note: `carb` has 6 values, so it is debatable whether it is continuous or discrete without examining what it means. For the purposes of this illustration I treat it as a continuous variable.
 
@@ -92,6 +97,16 @@ Code         | Notes
 `ndx <- which(vars<5)` | Select the variables that are categorical
 `m <- ncol(mtcars)` | Save the number of columns
 `for(i in 1:m){` <br>&nbsp;&nbsp;&nbsp;&nbsp;`if(i %in% ndx){` <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`mtcars[,i] = factor(mtcars[,i])` <br>&nbsp;&nbsp;&nbsp;&nbsp;`}` <br> `}; rm(i)` | Loop over all columns <br> Only select categorical variables <br>Coerce variables to factor <br><br>Good to tidy the worksapce by removing unwanted objects
+
+```{r, echo = F}
+vars <- apply(mtcars, 2, function(x) length(table(x)))
+ndx <- which(vars<5) # Select the variables that are categorical
+m <- ncol(mtcars)
+for(i in 1:m){
+  if(i %in% ndx){
+    mtcars[,i] = factor(mtcars[,i])
+}}; rm(i) # Good to tidy the workspace by removing unwanted objects
+```
 
 You can run `str(mtcars)` again to confirm that the output is what we want.
 
@@ -110,6 +125,12 @@ Code         | Notes
 `corr.matrix <- cor(mtcars[,-ndx])`| Create the correlation matrix
 `round(corr.matrix, 2)`| Round the correlation matrix to 2dp
 
+<b>Output</b>
+```{r, echo=F}
+corr.matrix <- cor(mtcars[,-ndx])
+round(corr.matrix, 2)
+```
+
 --------
 
 Let's now run our regression model with the most correlated variable, `wt`
@@ -118,6 +139,12 @@ Code         | Notes
 -------------|-------------
 `lm0 <- lm(mpg ~ wt, data = mtcars)`| Runs a regression and saves the results
 `summary(lm0)` | The summary gives us a glimpse of the R squared value
+
+<b>Output</b>
+```{r, echo=F}
+lm0 <- lm(mpg ~ wt, data = mtcars)
+summary(lm0)
+```
 
 --------
 
@@ -129,6 +156,11 @@ Code         | Notes
 `names(summary(lm0))`| Output omitted
 `summary(lm0)$adj.r.squared`| This accesses the adjusted R squared value directly
 
+<b>Output</b>
+```{r, echo=F}
+summary(lm0)$adj.r.squared
+```
+
 --------
 
 Now let's see what happens to `adj.r.squared` if we add another variable:
@@ -138,6 +170,12 @@ Code         | Notes
 `lm1 <- update(lm0, ~ . + cyl)` | Add `cyl` to the regression using `update()`
 `summary(lm1)$adj.r.squared`| Check the adjusted R squared again
 
+<b>Output</b>
+```{r, echo = F}
+lm1 <- update(lm0, ~ . + cyl)
+summary(lm1)$adj.r.squared
+```
+
 --------
 
 In doing this, we have managed to extract the information we want - the adjusted R squared - without displaying all the other information we are not interested in. We can even find the most "appropriate" second variable through yet another more complicated loop:
@@ -145,5 +183,18 @@ In doing this, we have managed to extract the information we want - the adjusted
 Code         | Notes
 -------------|-------------
 `for(i in 1:m){`<br>&nbsp;&nbsp;&nbsp;&nbsp;`if(names(mtcars)[i] %in% c("mpg", "wt")) next`<br> &nbsp;&nbsp;&nbsp;&nbsp;`else {`<br>                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`formula <- paste("~ . +", names(mtcars)[i], sep = "")`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`lm1 <- update(lm0, as.formula(formula))`<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`adj.r.sq <- round(summary(lm1)$adj.r.squared, 2)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`print(paste(adj.r.sq, names(mtcars)[i], sep = ", "))`<br> &nbsp;&nbsp;&nbsp;&nbsp;`}`<br> `}; rm(i, formula, lm1, adj.r.sq)`   | Loop over all variables <br> Exclude the two variables already involved <br> Specify what happens for the rest of the variables <br> Save the regression model as a string <br> Coerce the string to a formula, then run the regression <br> Obtain the adjusted R squared and round to 2dp <br> Print the results in the console <br>
+
+<b>Output</b>
+```{r, echo = F}
+for(i in 1:m){
+  if(names(mtcars)[i] %in% c("mpg", "wt")) next # Exclude the two variables already involved
+  else {
+    formula <- paste("~ . +", names(mtcars)[i], sep = "") # Save the regression model as a string
+    lm1 <- update(lm0, as.formula(formula)) # Coerce the string to a formula, then run the regression
+    adj.r.sq <- round(summary(lm1)$adj.r.squared, 2) # Obtain the adjusted R squared and round to 2dp
+    print(paste(adj.r.sq, names(mtcars)[i], sep = ", ")) # Print the result in the console
+  } 
+}; rm(i, formula, lm1, adj.r.sq)
+```
 
 So of all the remaining variables, `cyl` increases the adjusted R squared by the most.

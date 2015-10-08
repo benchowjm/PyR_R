@@ -1,0 +1,149 @@
+---
+title: Two Basic Examples
+date: 08-Oct-2015
+output: 
+    html_document:
+        css: styles.css    
+---
+<style type="text/css">
+    td:first-child {
+        width: 25%;
+    }
+</style>
+
+Using 01_Functions.Rmd as a reference, these two examples supply a laundry list of possible things to do when exploring a dataset.
+
+---------
+
+### __CARS__: A simple, two variable dataset ###
+
+`cars` is a cross-sectional dataset is available from the R __datasets__ package. There are only 2 variables - `speed` (the speeds at which cars were travelling at), and `dist` (the distance it took for them to stop).
+
+```{r}
+data(cars) # Load dataset
+str(cars); summary(cars)
+```
+
+The `str()` and `summary()` functions give us a brief summary of the data (for our information). For instance we know:
+
+- That the sample size is 50
+- The data types for the variables (numeric, for both)
+- The 5-figure quantile summaries for each of the variables
+
+<br>
+
+```{r}
+n <- nrow(cars)
+cars$fast <- factor(ifelse(cars$speed>20, "Fast", "Slow"))
+fastcars <- which(cars$fast=="Fast") # Generates a set of indices corresponding to our subset of interest
+length(fastcars)/n
+cars[fastcars,]
+```
+
+More things we can do:
+
+- Generate new (categorical) variables
+- Find the proportion of observations which satisfy a certain criteria
+- Subset out the observations of interest for closer scrutiny
+
+---------
+
+<br>
+
+### __MTCARS__: A regression example ###
+
+`mtcars` is another cross-sectional dataset about cars, encompassing 32 automobile types and their characteristics. You are encouraged to work through this example by typing the commands into your own console.
+
+Type `?mtcars` in your console to see a summary of what the variables mean. The main variable of interest is fuel efficiency (`mpg`). We would like to know what characteristics of cars are correlated with better fuel efficiency.
+
+<br>
+
+#### 1. __Data Summary__ ####
+
+As always, we start by examining a summary of the dataset:
+
+```{r, message=F}
+data(mtcars) # Load dataset
+str(mtcars)
+```
+
+--------
+
+<br>
+
+#### 2. __Discrete v.s. Categorical__ ####
+
+Given that we intend to run a regression, it is important to distinguish continuous from categorical variables. From the summary, some variables already appear to be categorical, such as `cyl` and `gear`, even though the data provider did not classify them as *factors*. To confirm this, we could __apply__ the function __table__ (or __unique__) to each column of the data and "see" whether the number of values looks small enough. However, for large datasets, the amount of output may be unwieldy and clog up our console.
+
+Code         | Notes
+-------------|-------------
+`apply(mtcars, 2, table)`       | May clog up console for large datasets.
+`apply(mtcars, 2, function(x){`<br> &nbsp;&nbsp;&nbsp;&nbsp;`length(unique(x))` <br> `})` | Define your own function to summarize only what you <br> want to see. The numbers below each variable tell us the <br> distinct number of values.
+
+Note: `carb` has 6 values, so it is debatable whether it is continuous or discrete without examining what it means. For the purposes of this illustration I treat it as a continuous variable.
+
+--------
+
+Next we want to quickly convert these variables into factors. I will use a simple loop to achieve this.  
+
+Code         | Notes
+-------------|-------------
+`vars <- apply(mtcars, 2, function(x) length(table(x)))`  | Save the distinct values
+`ndx <- which(vars<5)` | Select the variables that are categorical
+`m <- ncol(mtcars)` | Save the number of columns
+`for(i in 1:m){` <br>&nbsp;&nbsp;&nbsp;&nbsp;`if(i %in% ndx){` <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`mtcars[,i] = factor(mtcars[,i])` <br>&nbsp;&nbsp;&nbsp;&nbsp;`}` <br> `}; rm(i)` | Loop over all columns <br> Only select categorical variables <br>Coerce variables to factor <br><br>Good to tidy the worksapce by removing unwanted objects
+
+You can run `str(mtcars)` again to confirm that the output is what we want.
+
+--------
+
+<br>
+
+#### 3. __Simple Regression Model__ ####
+
+Suppose we have done our exploratory analysis (a future guide) and are ready to start fitting variables. For this illustration, assume that we are interested in achieving a good fit as measured through adjusted R squared.
+
+__Helper functions__: The function `lm()` runs a linear regression model. `update()` allows you to call a previous regression and to add additional variables to it. `cor()` generates a correlation matrix.
+
+Code         | Notes
+-------------|-------------
+`corr.matrix <- cor(mtcars[,-ndx])`| Create the correlation matrix
+`round(corr.matrix, 2)`| Round the correlation matrix to 2dp
+
+--------
+
+Let's now run our regression model with the most correlated variable, `wt`
+
+Code         | Notes
+-------------|-------------
+`lm0 <- lm(mpg ~ wt, data = mtcars)`| Runs a regression and saves the results
+`summary(lm0)` | The summary gives us a glimpse of the R squared value
+
+--------
+
+If we wanted to extract the R squared for further use, we would have to do a little tinkering with this `lm` object. Browse the names of the `lm` object and its summary to find out where this value is stored.
+
+Code         | Notes
+-------------|-------------
+`names(lm0)` | Output omitted
+`names(summary(lm0))`| Output omitted
+`summary(lm0)$adj.r.squared`| This accesses the adjusted R squared value directly
+
+--------
+
+Now let's see what happens to `adj.r.squared` if we add another variable:
+
+Code         | Notes
+-------------|-------------
+`lm1 <- update(lm0, ~ . + cyl)` | Add `cyl` to the regression using `update()`
+`summary(lm1)$adj.r.squared`| Check the adjusted R squared again
+
+--------
+
+In doing this, we have managed to extract the information we want - the adjusted R squared - without displaying all the other information we are not interested in. We can even find the most "appropriate" second variable through yet another more complicated loop:
+
+Code         | Notes
+-------------|-------------
+`for(i in 1:m){`<br>&nbsp;&nbsp;&nbsp;&nbsp;`if(names(mtcars)[i] %in% c("mpg", "wt")) next`<br> &nbsp;&nbsp;&nbsp;&nbsp;`else {`<br>                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`formula <- paste("~ . +", names(mtcars)[i], sep = "")`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`lm1 <- update(lm0, as.formula(formula))`<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`adj.r.sq <- round(summary(lm1)$adj.r.squared, 2)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`print(paste(adj.r.sq, names(mtcars)[i], sep = ", "))`<br> &nbsp;&nbsp;&nbsp;&nbsp;`}`<br> `}; rm(i, formula, lm1, adj.r.sq)`   | Loop over all variables <br> Exclude the two variables already involved <br> Specify what happens for the rest of the variables <br> Save the regression model as a string <br> Coerce the string to a formula, then run the regression <br> Obtain the adjusted R squared and round to 2dp <br> Print the results in the console <br>
+
+So of all the remaining variables, `cyl` increases the adjusted R squared by the most.

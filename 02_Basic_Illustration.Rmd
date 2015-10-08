@@ -1,0 +1,27 @@
+---
+date: 08-Oct-2015
+author: "Ben Chow"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-family: 'Century Gothic';
+    color: #413839;
+  }
+  
+  code {
+    background-color: #FFFFFF;
+    color: #368BC1;
+  }
+  
+  td:first-child {
+    width: 25%;
+  }
+  
+  h4 {
+    color: #151B54;
+  }
+</style>
+
+

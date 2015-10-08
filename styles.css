@@ -1,0 +1,15 @@
+body, td {
+    font-family: 'Century Gothic';
+    color: #413839;
+}
+
+code {
+    background-color: #FFFFFF;
+    color: #368BC1;
+    border: 0px;
+}
+
+
+h3, h4 {
+    color: #151B54;
+}

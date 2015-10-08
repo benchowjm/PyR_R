@@ -1,9 +1,9 @@
 ## PyR Repository of R Resources
 
-This repository is a compilation of files & resources to help those of you new to R/RStudio to get acquainted with the program as fast as possible.
+This repository is a compilation of files & resources to help those of you new to R/RStudio to get acquainted with the program as fast as possible. __If you're here for the first time__ go to the section titled 'Do you Git it???' at the bottom of this README.
 
 ### Learning R On Your Own ###
-1. Go through the file "00\_Installing_R.Rmd". Topics:
+1. Go through the file __"00\_Installing_R.Rmd"__. Topics:
     + Installing R & R Studio
     + Manual installation of packages
     + Brief introduction to R
@@ -12,6 +12,8 @@ This repository is a compilation of files & resources to help those of you new t
     + R Syntax
     + Vectors, Matrics, Factors, Data Frames
     + Summary Statistics and Linear Models
+3. Get acquainted with the list of functions in __"01\_Functions.Rmd"__
+4. Have a look at some examples of using these functions in __"02\_Basic_Illustration.Rmd"__
 
 
 ### External Resources ###
@@ -41,3 +43,28 @@ This repository is a compilation of files & resources to help those of you new t
 #### R Markdown ####
 - [RStudio's](http://rmarkdown.rstudio.com/) R Markdown introduction
 - [RStudio's](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) R Markdown cheatsheet
+
+
+### Do you Git it??? ###
+This section briefly explains how this repository works. There are two 'branches', the __master__ and __cloneable__ branches. You can switch from one to the other by toggling the "Branch:" drop-down menu in the top left.
+
+   |__master__ branch | __cloneable__ branch
+---|------------------|---------------------
+Purpose|Using the site remotely | Cloning the repository to your computer
+Online Display| Rmd files are presentable on github | Rmd files, if viewed on github, have peculiarities
+Content| Some omitted due to inability to produce R output | Full content 
+How to use| Copy and paste the code chunks into your R Studio UI | Open the html files directly after cloning the repo
+
+To clone:
+
+    - Open your command line / Terminal program
+    - Navigate to a directory of your choice (cd Documents/R/...)
+    - Initialize a git repository (git init)
+    - Clone the repository (git clone https://github.com/benchowjm/PyR_R PyR_R)
+
+__Note__: If you want the best of both worlds but don't have git / can't clone this repository: 
+
+    - Go to the __cloneable__ branch
+    - Open the corresponding .html files
+    - Copy all the text & paste it into a fresh text file and save it as a .html
+    - Open your newly saved file in your browser

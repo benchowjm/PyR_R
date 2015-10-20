@@ -1,6 +1,6 @@
 ## PyR Repository of R Resources
 
-This repository is a compilation of files & resources to help those of you new to R/RStudio to get acquainted with the program as fast as possible. __If you're here for the first time__ go to the section titled 'Do you Git it???' at the bottom of this README.
+This repository is a compilation of files & resources to help those of you new to R/RStudio to get acquainted with the program as fast as possible. __If you're here for the first time__ make sure the 'Branch' is set to __master__. Only if you are able to clone the repository (see the bottommost section) should you use the __cloneable__ branch.
 
 ### Learning R On Your Own ###
 1. Go through the file __"00\_Installing_R.Rmd"__. Topics:
@@ -45,7 +45,7 @@ This repository is a compilation of files & resources to help those of you new t
 - [RStudio's](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) R Markdown cheatsheet
 
 
-### Do you Git it??? ###
+### Do you Git it? ###
 This section briefly explains how this repository works. There are two 'branches', the __master__ and __cloneable__ branches. You can switch from one to the other by toggling the "Branch:" drop-down menu in the top left.
 
    |__master__ branch | __cloneable__ branch

@@ -21,13 +21,16 @@ After working with R for some time, you may end up having many objects in your w
 
 Code                      | Notes
 --------------------------|--------------------------
-`attributes(obj)`         | Many objects from complicated classes (e.g. *ggplot*, *lm*) are *lists* of named, varied components
-`names(obj) `             | Some objects have named components. For *list*-type objects, you can access named sub-components using `$`
-`class(obj)`              | An object's type is called its *class* (e.g. *data frame*, *numeric*, or *list*)
+`length(obj)`             | Tells you how many elements are in an object
+`attributes(obj)`         | Many objects from complicated classes (e.g. *ggplot*, *lm*) are *lists* of named, varied elements. 
+`names(obj) `             | Some objects have names assigned to their elements. For *list*-type objects, you can access named elements using `$`
+`class(obj)`              | An object's 'type' is called its *class* (e.g. *data frame*, *numeric*, or *list*)
+`dim(obj)`                | Displays the dimension of the object.
 `str(obj)`                | Shows the structure of the object
 `summary(obj)`            | Most useful for variables in a *data frame* and *lm* objects
-`dim(obj)`                | Gives the dimension of tabular, array-like objects.
-`length(obj)`             | Gives the length of 1-dimensional objects, or the number of components in a *list*-type object
+
+
+Attributes store important information about objects. The three most important types of attributes are names, class and dimension. The `str` and `summary` functions are useful for seeing a quick snapshot of your object. A more advanced introduction to R objects is provided by Hadley Wickham [here](http://adv-r.had.co.nz/Data-structures.html).
 
 --------
 
@@ -58,7 +61,7 @@ Code                      | Notes
 
 ### 3. Handling Data (Individual Values) ###
 
-Usually, datasets pulled from registry or other sources will be formatted in a less-than-perfect way. You may need functions to transform data values. The following tables mostly work with individual values but will accept *vectors* as well.
+Usually, datasets pulled from registry or other sources will be formatted in a less-than-perfect way. You may need functions to transform data values. The following functions work with both individual values as well as on multiple values stored in a *vector*.
 
 <br>
 
@@ -79,6 +82,8 @@ Code                      | Notes
 
 #### Strings ####
 
+*Strings* in R are identifiable by their class, which is *character*. Note that the following functions may produce results contrary to what you expect if you tried to use them on *numeric* or other data types.
+
 Code                      | Notes
 --------------------------|----------------------------------
 `paste(x, y)`             | Concatenates `x` and `y` into one string. Arguments: `collapse =` or `sep =`.
@@ -92,9 +97,9 @@ Code                      | Notes
 
 <br>
 
-#### Coercion and Logicals ####
+#### Coercion and Test Functions ####
 
-In addition there are 2 important families of functions. The first is for coercion, which is forcing a change of an object from one *class* to another. The second family tests whether objects correspond to a certain type and are useful for fortifying your code, making it more resilient to irregular data types.  
+In addition there are 2 important families of functions. The first concerns functions for coercion, which is forcing a change of an object from one *class* to another. The second family tests whether objects correspond to a certain type and are useful for fortifying your code, making it more resilient to irregular data types.  
 
 __Coercion__: `as.numeric(); as.character(); as.data.frame(); as.matrix(); as.list(); as.factor()`  
 __Logicals__: `is.numeric(); is.character(); is.data.frame(); is.ggplot(); is.na(); is.nan()` 

@@ -42,4 +42,4 @@ names(animals)
 animals[,1]
 
 # Display the first row of animals
-animals[,1]
+animals[1,]

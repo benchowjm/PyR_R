@@ -9,6 +9,9 @@ code {
     border: 0px;
 }
 
+a {
+    target: "_blank"
+}
 
 h3, h4 {
     color: #151B54;

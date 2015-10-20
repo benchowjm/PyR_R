@@ -139,5 +139,5 @@ Code       | Notes
 `animals <- data.frame(`<br>&nbsp;&nbsp;&nbsp;&nbsp;`type=c("Cat", "Dog", "Elephant"),`<br>&nbsp;&nbsp;&nbsp;&nbsp;`name=c("Cathy", "Donald", "Ervin"))` | Create a *data frame* with 2 columns, <br> *type* and *name*, and save it <br> as an object called `animals`
 `names(animals)`| Display the column names of the *data frame* called `animals`
 `animals[,1]` | Display the first column of `animals`
-`animals[,1]` | Display the first row of `animals`
+`animals[1,]` | Display the first row of `animals`
 

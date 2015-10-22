@@ -78,7 +78,9 @@ To find your current working directory, you can either:
 1. Go to the __Files__ tab to see what your working directory currently is, __OR__
 2. Run the following command in the console: 
 
-`getwd()`
+```{r, eval=F}
+getwd()
+```
 
 To change your current working directory, you can either:
 
@@ -86,8 +88,9 @@ To change your current working directory, you can either:
     + Click on the 'More' button, then "Set As Working Directory", __OR__
 2. Press Ctrl+Shift+H and choose your directory manually, __OR__
 3. Run the following command in the console, replacing '~' with your directory name
-
-`setwd("~")`
+```{r, eval=F}
+setwd("~")
+```
 
 --------
 
@@ -96,7 +99,9 @@ Many useful functions in R come in add-ons called 'packages'. R comes with a ser
 
 If you run R on your own personal computer, the easiest way to install packages is to type a single line of code into the console. This accesses an online 'repository' containing the files and downloads them to your computer. For instance to install the package __shiny__ you would type:
 
-`install.packages("shiny")`
+```{r, eval=F}
+install.packages("shiny")
+```
 
 However, this method will not work on your work laptop. Instead, you will need to perform a manual installation. The next series of steps shows you how to do this:
 
@@ -115,9 +120,9 @@ However, this method will not work on your work laptop. Instead, you will need t
 
 5. Finally, type the following code into your console, replacing 'htmltools_0.2.6.zip' with the <u> name of the downloaded, unzipped folder</u>:
 
-`install.packages(pkgs="htmltools_0.2.6.zip", repos = NULL, type="source")`
-
---------
+```{r, eval=F}
+install.packages(pkgs="htmltools_0.2.6.zip", repos = NULL, type="source")
+```
 
 ### 6. Short Familiarisation Exercise ###
 
@@ -139,5 +144,5 @@ Code       | Notes
 `animals <- data.frame(`<br>&nbsp;&nbsp;&nbsp;&nbsp;`type=c("Cat", "Dog", "Elephant"),`<br>&nbsp;&nbsp;&nbsp;&nbsp;`name=c("Cathy", "Donald", "Ervin"))` | Create a *data frame* with 2 columns, <br> *type* and *name*, and save it <br> as an object called `animals`
 `names(animals)`| Display the column names of the *data frame* called `animals`
 `animals[,1]` | Display the first column of `animals`
-`animals[1,]` | Display the first row of `animals`
+`animals[,1]` | Display the first row of `animals`
 

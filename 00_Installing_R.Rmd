@@ -13,7 +13,10 @@ output:
 
 If you're entirely new to R, this document provides a step-by-step manual of how to install R and R Studio on your computer. There is also a basic introduction to the R Studio interface, and a run-through on how to install additional packages (where security safeguards prevent automatic installation).
 
+--------
+
 ### 1. Installing R ###
+
 - Go to the [R Website](https://cran.r-project.org/bin/windows/base/)
 - Click on the hyperlink to download the latest version of the installer
     + Run the .exe installer and choose the default paths
@@ -24,7 +27,10 @@ If you're entirely new to R, this document provides a step-by-step manual of how
     + If you can run the program, exit without saving anything
 - You can delete the installer once you've managed to run the program
 
+--------
+
 ### 2. Installing R Studio ###
+
 - R Studio is a prettier version of R with a user-friendly
 - Go to the [R Studio Website](https://www.rstudio.com/products/rstudio/download/)
 - To install R Studio, you will need admin privileges. To get around this:
@@ -32,6 +38,8 @@ If you're entirely new to R, this document provides a step-by-step manual of how
     + Unzip the folder, open it and then the "bin" folder
     + There will be an application called "rstudio"
     + Create a shortcut to this application on your desktop / startup menu
+
+--------
 
 ### 3. Getting a feel of the interface ###
 There are 4 parts to the RStudio interface:
@@ -59,7 +67,10 @@ There are 4 parts to the RStudio interface:
 
 There are numerous online resources for orientation to the interface, such as [this one](http://dss.princeton.edu/training/RStudio101.pdf).
 
+--------
+
 ### 4. The Working Directory ###
+
 Where functions in R make use of files other than .R scripts, they will search in your <b><i>Working Directory</i></b> for these files. Think of your directories as rooms in a big house. At any time, there is a person navigating through your house, going from room to room. If you tell the person to access the file Nice_Graph.jpg, the person only searches the room he is currently in for such a file, and will report back with an error if there is none.
 
 To find your current working directory, you can either:
@@ -67,9 +78,7 @@ To find your current working directory, you can either:
 1. Go to the __Files__ tab to see what your working directory currently is, __OR__
 2. Run the following command in the console: 
 
-```{r, eval=F}
-getwd()
-```
+`getwd()`
 
 To change your current working directory, you can either:
 
@@ -77,18 +86,17 @@ To change your current working directory, you can either:
     + Click on the 'More' button, then "Set As Working Directory", __OR__
 2. Press Ctrl+Shift+H and choose your directory manually, __OR__
 3. Run the following command in the console, replacing '~' with your directory name
-```{r, eval=F}
-setwd("~")
-```
 
+`setwd("~")`
+
+--------
 
 ### 5. Installing packages ###
 Many useful functions in R come in add-ons called 'packages'. R comes with a series of pre-installed basic packages such as 'datasets', 'stats', 'utils', etc. For added functions and tools, you can install other packages made available on the CRAN network.
 
 If you run R on your own personal computer, the easiest way to install packages is to type a single line of code into the console. This accesses an online 'repository' containing the files and downloads them to your computer. For instance to install the package __shiny__ you would type:
-```{r, eval=F}
-install.packages("shiny")
-```
+
+`install.packages("shiny")`
 
 However, this method will not work on your work laptop. Instead, you will need to perform a manual installation. The next series of steps shows you how to do this:
 
@@ -106,9 +114,10 @@ However, this method will not work on your work laptop. Instead, you will need t
 4. Set your working directory to the Downloads folder on your computer
 
 5. Finally, type the following code into your console, replacing 'htmltools_0.2.6.zip' with the <u> name of the downloaded, unzipped folder</u>:
-```{r, eval=F}
-install.packages(pkgs="htmltools_0.2.6.zip", repos = NULL, type="source")
-```
+
+`install.packages(pkgs="htmltools_0.2.6.zip", repos = NULL, type="source")`
+
+--------
 
 ### 6. Short Familiarisation Exercise ###
 
